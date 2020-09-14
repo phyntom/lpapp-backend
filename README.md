@@ -10,4 +10,12 @@ This is the loan application backend application developed using Spring Boot. It
 4. Edit a branch
 5. Create a customer
 6. Check if customer exists
-7. Calculate Basic Premium
+7. Create Individual and Group Policies
+8. Calculate Basic Premium
+9. Applying Reduction
+10.   Applying Mortality Rate
+11.   Save Records in MySQL db
+12.   Creating Users
+13.   Edit Users
+14.   Disable and Enable users
+15.   Provide RESTFul API to the React Client for each functionality above
