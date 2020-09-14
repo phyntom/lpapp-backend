@@ -1,9 +1,8 @@
 package co.radiantmic.lpapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "roles")
@@ -15,13 +14,18 @@ public class Role {
     private String roleName;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 
     public Role() {
 
+    }
+
+    public Role(String roleName) {
+
+        this.roleName = roleName;
     }
 
     public Long getRoleId() {
@@ -47,12 +51,12 @@ public class Role {
     @PrePersist
     protected void onCreate() {
 
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
 
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = new Date();
     }
 }

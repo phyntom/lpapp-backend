@@ -1,10 +1,9 @@
 package co.radiantmic.lpapp.repositories;
 
-import co.radiantmic.lpapp.domain.Role;
+import co.radiantmic.lpapp.domain.Branch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role,Long> {
-    Role findByRoleName(String roleName);
+public interface BranchRepository extends JpaRepository<Branch,Integer> {
 }

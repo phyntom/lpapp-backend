@@ -5,15 +5,20 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "bank")
 public class Bank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bankId;
+    private Integer bankId;
 
     private String bankName;
 
+    private String bankType;
+
     private BigInteger maxSumInsured;
+
+    private double discount;
 
     private LocalDateTime createdOn;
 
@@ -23,12 +28,30 @@ public class Bank {
 
     }
 
-    public Long getBankId() {
+    public Bank(String bankName, String bankType, BigInteger maxSumInsured, double discount) {
+
+        this.bankName = bankName;
+        this.bankType = bankType;
+        this.maxSumInsured = maxSumInsured;
+        this.discount = discount;
+    }
+
+    public Integer getBankId() {
 
         return bankId;
     }
 
-    public void setBankId(Long bankId) {
+    public double getDiscount() {
+
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+
+        this.discount = discount;
+    }
+
+    public void setBankId(Integer bankId) {
 
         this.bankId = bankId;
     }
@@ -40,7 +63,17 @@ public class Bank {
 
     public void setBankName(String bankName) {
 
-        this.bankName = bankName;
+        this.bankName = bankName.toUpperCase();
+    }
+
+    public String getBankType() {
+
+        return bankType;
+    }
+
+    public void setBankType(String bankType) {
+
+        this.bankType = bankType.toUpperCase();
     }
 
     public BigInteger getMaxSumInsured() {

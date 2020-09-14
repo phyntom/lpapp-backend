@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -16,7 +16,7 @@ public class User {
     private Long userId;
 
     @NotBlank(message = "Username cannot be blank")
-    private String userName;
+    private String username;
 
     @NotBlank(message = "Password cannot be blank")
     private String password;
@@ -25,19 +25,30 @@ public class User {
     @Email
     private String email;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime createdAt;
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private Date createdAt;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime updatedAt;
+    @JsonFormat(pattern = "MM/dd/yyyy")
+    private Date updatedAt;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
-    private Set<Role> roles;
+
+    private List<Role> roles = new ArrayList<>();
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="branch_id")
+    private Branch branch;
 
     public User() {
 
+    }
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 
     public Long getUserId() {
@@ -46,79 +57,74 @@ public class User {
     }
 
     public void setUserId(Long userId) {
-
         this.userId = userId;
     }
 
-    public String getUserName() {
-
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
-
         return password;
     }
 
     public String getEmail() {
-
         return email;
     }
 
     public void setEmail(String email) {
-
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
     public void setPassword(String password) {
-
         this.password = password;
     }
 
-    public LocalDateTime getCreatedAt() {
-
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
-
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     @PrePersist
     protected void onCreate() {
-
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
-
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = new Date();
     }
+
+
+
 }
