@@ -10,7 +10,7 @@
     </parent>
     <groupId>co.radiantmic</groupId>
     <artifactId>lpapp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>lpapp</name>
     <description>Radiant Loan Protection Application</description>
     <properties>

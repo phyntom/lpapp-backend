@@ -84,7 +84,6 @@ public class PolicyController {
             mapperReader.registerModule(new JavaTimeModule());
             mapperReader.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             JsonNode root = mapperReader.readTree(reader);
-            System.out.println(root);
             String username = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
             User createdBy = userService.findByUsername(username);
             Policy policy = mapperReader.treeToValue(root, Policy.class);
