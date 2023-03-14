@@ -45,31 +45,6 @@ public class LpApplication {
         SpringApplication.run(LpApplication.class, args);
     }
 
-
-//    @Bean
-//    CommandLineRunner runner() {
-//        return args -> {
-//            Bank bkBank =bankRepository.save(new Bank("BK", "MAIN",BigInteger.valueOf(10000000),0.01));
-//            Bank equityBank = bankRepository.save(new Bank("EQUITY BANK", "BRANCH",BigInteger.valueOf(10000000),0.03));
-//            Bank ecoBank = bankRepository.save(new Bank("ECOBANK", "BRANCH",BigInteger.valueOf(10000000),0.0));
-//
-//            Role userRole = roleRepository.save(new Role("USER"));
-//            Role adminRole = roleRepository.save(new Role("ADMIN"));
-//            Role superAdmin = roleRepository.save(new Role("SUPER-ADMIN"));
-//            Role agent = roleRepository.save(new Role("AGENT"));
-//
-//            User user = new User("user", passwordEncoder().encode("user"), "phyntom@gmail.com");
-//            User admin = new User("admin", passwordEncoder().encode("admin"), "phyntom@gmail.com");
-//
-//            user.getRoles().add(userRole);
-//            user.setBank(bkBank);
-//            admin.getRoles().add(adminRole);
-//            admin.setBank(ecoBank);
-//            userRepository.save(user);
-//            userRepository.save(admin);
-//        };
-//    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
